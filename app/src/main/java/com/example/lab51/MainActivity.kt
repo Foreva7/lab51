@@ -3,6 +3,7 @@ package com.example.lab51
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.lab51.ui.theme.Lab51Theme
@@ -67,7 +69,7 @@ fun Greeting() {
                     .padding(top = 5.dp, bottom = 30.dp)
             )
         }
-        Column {
+        Column (modifier = Modifier.padding(bottom = 10.dp)) {
             Text(
                 text = "Выберите валюту:",
                 modifier = Modifier
@@ -80,6 +82,14 @@ fun Greeting() {
 
                 }
             }
+        }
+
+        Column(modifier = Modifier.background(color = Color.LightGray).padding(all = 10.dp).fillMaxWidth(1f)) {
+            Text(
+                text = "Итог в рублях :",
+                modifier = Modifier.padding(bottom = 10.dp)
+            )
+            Text(text = "1000руб")
         }
 
     }
