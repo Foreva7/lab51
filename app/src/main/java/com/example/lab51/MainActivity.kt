@@ -77,6 +77,7 @@ fun Greeting() {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     RadioButton(selected = text == selectedCur, onClick = { setSelectedCur(text) })
                     Text(text = text)
+
                 }
             }
         }
