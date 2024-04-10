@@ -51,8 +51,12 @@ fun Greeting() {
         mutableStateOf("")
     }
 
-    val language = listOf("Доллар - 75руб.", "Евро - 90руб.", "Фунт - 100руб.")
-    val (selectedCur, setSelectedCur) = remember { mutableStateOf(language[0]) }
+    val curenncys = listOf(
+        Curenncy("Доллар", 75),
+        Curenncy("Евро", 90),
+        Curenncy("Фунт", 120)
+    )
+    val (selectedCur, setSelectedCur) = remember { mutableStateOf(curenncys[0]) }
 
     Column(
         Modifier
@@ -75,21 +79,25 @@ fun Greeting() {
                 modifier = Modifier
                     .padding(bottom = 10.dp)
             )
-            language.forEach { text ->
+            curenncys.forEach { c ->
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    RadioButton(selected = text == selectedCur, onClick = { setSelectedCur(text) })
-                    Text(text = text)
+                    RadioButton(selected = c == selectedCur, onClick = { setSelectedCur(c) })
+                    Text(text = c.text + " - " + c.cost)
 
                 }
             }
         }
 
-        Column(modifier = Modifier.background(color = Color.LightGray).padding(all = 10.dp).fillMaxWidth(1f)) {
+        Column(modifier = Modifier.background(color = Color.Gray).padding(all = 10.dp).fillMaxWidth(1f)) {
             Text(
                 text = "Итог в рублях :",
                 modifier = Modifier.padding(bottom = 10.dp)
             )
-            Text(text = "1000руб")
+            if (cost.toDoubleOrNull() != null) {
+                Text(text = (cost.toDouble() * selectedCur.cost).toString())
+            } else {
+                Text(text = "0")
+            }
         }
 
     }
